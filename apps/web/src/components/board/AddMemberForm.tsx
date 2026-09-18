@@ -23,13 +23,13 @@ export function AddMemberForm({ boardId, onClose }: { boardId: string; onClose: 
   }
 
   return (
-    <div className="fixed inset-0 z-20 flex items-center justify-center bg-slate-900/30" onClick={onClose}>
+    <div className="fixed inset-0 z-20 flex items-center justify-center bg-ink/30" onClick={onClose}>
       <div
-        className="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl"
+        className="w-full max-w-sm rounded-xl bg-paper p-6 shadow-[0_10px_30px_rgba(42,35,26,0.25)]"
         onClick={(event) => event.stopPropagation()}
       >
-        <h2 className="text-lg font-bold text-slate-900">Add a member</h2>
-        <p className="mt-1 text-sm text-slate-500">They need an existing FlowBoard account.</p>
+        <h2 className="text-lg font-bold text-ink">Add a member</h2>
+        <p className="mt-1 text-sm text-ink-soft">They need an existing Corkboard account.</p>
         <form onSubmit={handleSubmit} className="mt-4 space-y-4">
           <input
             type="email"
@@ -38,11 +38,11 @@ export function AddMemberForm({ boardId, onClose }: { boardId: string; onClose: 
             placeholder="friend@example.com"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600"
+            className="w-full rounded-lg border border-ink/15 px-3 py-2 text-sm outline-none focus:border-pin focus:ring-1 focus:ring-pin"
           />
 
           {errorMessage && (
-            <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">{errorMessage}</p>
+            <p className="rounded-lg bg-pin-coral/10 px-3 py-2 text-sm text-danger">{errorMessage}</p>
           )}
 
           <div className="flex gap-2">

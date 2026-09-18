@@ -30,45 +30,45 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-6 py-16">
-      <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-slate-900">Create an account</h1>
-        <p className="mt-1 text-sm text-slate-500">Start organizing work with your team.</p>
+    <div className="cork-texture flex min-h-screen items-center justify-center px-6 py-16">
+      <div className="w-full max-w-sm rounded-xl bg-paper p-8 shadow-[0_3px_10px_rgba(42,35,26,0.12)]">
+        <h1 className="text-2xl font-bold text-ink">Create an account</h1>
+        <p className="mt-1 text-sm text-ink-soft">Start organizing work with your team.</p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700">Full name</label>
+            <label className="block text-sm font-medium text-ink-soft">Full name</label>
             <input
               required
               value={fullName}
               onChange={(event) => setFullName(event.target.value)}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600"
+              className="mt-1 w-full rounded-lg border border-ink/15 px-3 py-2 text-sm outline-none focus:border-pin focus:ring-1 focus:ring-pin"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Email</label>
+            <label className="block text-sm font-medium text-ink-soft">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600"
+              className="mt-1 w-full rounded-lg border border-ink/15 px-3 py-2 text-sm outline-none focus:border-pin focus:ring-1 focus:ring-pin"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Password</label>
+            <label className="block text-sm font-medium text-ink-soft">Password</label>
             <input
               type="password"
               required
               minLength={8}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600"
+              className="mt-1 w-full rounded-lg border border-ink/15 px-3 py-2 text-sm outline-none focus:border-pin focus:ring-1 focus:ring-pin"
             />
           </div>
 
           {errorMessage && (
-            <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">{errorMessage}</p>
+            <p className="rounded-lg bg-pin-coral/10 px-3 py-2 text-sm text-danger">{errorMessage}</p>
           )}
 
           <Button type="submit" className="w-full" disabled={register.isPending}>
@@ -76,9 +76,9 @@ export default function RegisterPage() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-ink-soft">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-violet-600 hover:underline">
+          <Link href="/login" className="font-medium text-pin hover:underline">
             Sign in
           </Link>
         </p>

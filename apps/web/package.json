@@ -1,6 +1,7 @@
 {
-  "name": "@flowboard/web",
+  "name": "corkboard-web",
   "version": "0.1.0",
+  "description": "Corkboard — drag a card and everyone watching the board sees it move in the same second, no refresh, no merge conflicts.",
   "private": true,
   "scripts": {
     "dev": "next dev",

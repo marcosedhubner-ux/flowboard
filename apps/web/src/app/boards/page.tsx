@@ -12,26 +12,28 @@ function BoardsView() {
   const [isCreating, setIsCreating] = useState(false);
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-8">
+    <div className="cork-texture mx-auto min-h-[calc(100vh-65px)] max-w-4xl px-6 py-8">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">Your boards</h1>
+        <h1 className="text-2xl font-bold text-ink">Your boards</h1>
         <Button onClick={() => setIsCreating(true)}>New board</Button>
       </div>
 
       {isLoading ? (
-        <p className="text-sm text-slate-400">Loading...</p>
+        <p className="text-sm text-ink-soft">Loading...</p>
       ) : boards?.length === 0 ? (
-        <p className="text-sm text-slate-400">You are not part of any board yet.</p>
+        <p className="text-sm text-ink-soft">You are not part of any board yet.</p>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {boards?.map((board) => (
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {boards?.map((board, index) => (
             <Link
               key={board.id}
               href={`/boards/${board.id}`}
-              className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md"
+              className={`rounded-xl bg-paper p-4 shadow-[0_3px_10px_rgba(42,35,26,0.12)] transition-transform duration-150 ease-out hover:rotate-0 hover:shadow-[0_5px_14px_rgba(42,35,26,0.16)] ${
+                index % 2 === 0 ? "rotate-[-0.6deg]" : "rotate-[0.6deg]"
+              }`}
             >
-              <p className="font-semibold text-slate-900">{board.name}</p>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="font-semibold text-ink">{board.name}</p>
+              <p className="mt-1 text-xs text-ink-soft">
                 {board.members.length} member{board.members.length === 1 ? "" : "s"}
               </p>
             </Link>

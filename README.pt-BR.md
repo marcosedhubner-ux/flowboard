@@ -1,4 +1,4 @@
-# FlowBoard
+# Corkboard
 
 Um quadro Kanban colaborativo em tempo real. Arraste um cartão e todo mundo olhando o quadro vê o movimento instantaneamente, vê quem mais está vendo o quadro agora, e vê tudo cair num feed de atividade — sem recarregar o quadro inteiro e sem nunca precisar renumerar todos os outros cartões da coluna.
 
@@ -6,7 +6,7 @@ Um quadro Kanban colaborativo em tempo real. Arraste um cartão e todo mundo olh
 
 ## Por que esse projeto existe
 
-O jeito óbvio de guardar "ordem do cartão" é uma coluna inteira e um reindex a cada arraste: o cartão vai pra posição 3, então todo cartão depois dele desloca uma posição, numa única requisição. Isso funciona até duas pessoas arrastarem cartões na mesma coluna ao mesmo tempo, ou a coluna ter algumas centenas de cartões — agora cada movimento é uma escrita O(n) e uma condição de corrida esperando pra acontecer. O FlowBoard usa posicionamento fracionário em vez disso: cada cartão recebe uma posição em ponto flutuante, e inserir entre dois cartões é só o ponto médio entre as posições deles — uma escrita O(1) que toca exatamente uma linha.
+O jeito óbvio de guardar "ordem do cartão" é uma coluna inteira e um reindex a cada arraste: o cartão vai pra posição 3, então todo cartão depois dele desloca uma posição, numa única requisição. Isso funciona até duas pessoas arrastarem cartões na mesma coluna ao mesmo tempo, ou a coluna ter algumas centenas de cartões — agora cada movimento é uma escrita O(n) e uma condição de corrida esperando pra acontecer. O Corkboard usa posicionamento fracionário em vez disso: cada cartão recebe uma posição em ponto flutuante, e inserir entre dois cartões é só o ponto médio entre as posições deles — uma escrita O(1) que toca exatamente uma linha.
 
 ## Arquitetura
 
@@ -35,7 +35,7 @@ Mover cartões é otimista no cliente (`useMoveCard` em `apps/web`): a interface
 
 ## Presença em tempo real
 
-Além de transmitir mudanças de dados (o mesmo padrão `board:updated` usado em todo esse portfólio), o FlowBoard rastreia quem está *olhando o board agora* — um estado que deliberadamente nunca toca o banco de dados, porque só é verdadeiro enquanto um socket continua conectado. Cada conexão entra numa sala `board:<id>` e se registra num mapa em memória; a lista atual de quem está vendo é retransmitida pra essa sala a cada entrada e desconexão. Feche a aba, e você desaparece da barra de presença de todo mundo em uma volta de rede — sem indicador "online" desatualizado esperando expirar.
+Além de transmitir mudanças de dados (o mesmo padrão `board:updated` usado em todo esse portfólio), o Corkboard rastreia quem está *olhando o board agora* — um estado que deliberadamente nunca toca o banco de dados, porque só é verdadeiro enquanto um socket continua conectado. Cada conexão entra numa sala `board:<id>` e se registra num mapa em memória; a lista atual de quem está vendo é retransmitida pra essa sala a cada entrada e desconexão. Feche a aba, e você desaparece da barra de presença de todo mundo em uma volta de rede — sem indicador "online" desatualizado esperando expirar.
 
 ## Segurança
 

@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
+/*
+ * Corkboard palette — warm, tactile, paper-and-pin.
+ * Deliberately a single light theme (no prefers-color-scheme swap): the
+ * whole point of this app's identity is that it reads warm and analog,
+ * so it doesn't flip to a generic dark scaffold on user preference.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4ede1;
+  --foreground: #2a231a;
+
+  --color-cork: #f4ede1;
+  --color-paper: #fffdf8;
+  --color-ink: #2a231a;
+  --color-ink-soft: #6f6355;
+
+  --color-pin: #2f7a4d;
+  --color-pin-amber: #d9a441;
+  --color-pin-coral: #c9603f;
+
+  --color-success: #2f7a4d;
+  --color-warning: #b8863b;
+  --color-danger: #ad4a34;
+  --color-info: #5b7c68;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-cork: var(--color-cork);
+  --color-paper: var(--color-paper);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-pin: var(--color-pin);
+  --color-pin-amber: var(--color-pin-amber);
+  --color-pin-coral: var(--color-pin-coral);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-info: var(--color-info);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-hand: var(--font-caveat);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+ * Subtle cork-board texture: layered low-opacity radial gradients, tan on
+ * tan, meant to suggest the mottled surface of real cork without ever
+ * reading as a "pattern". Used behind the board canvas and the auth screens.
+ */
+.cork-texture {
+  background-color: var(--color-cork);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(42, 35, 26, 0.05) 0, transparent 6%),
+    radial-gradient(circle at 82% 12%, rgba(42, 35, 26, 0.04) 0, transparent 5%),
+    radial-gradient(circle at 38% 68%, rgba(42, 35, 26, 0.045) 0, transparent 7%),
+    radial-gradient(circle at 68% 82%, rgba(42, 35, 26, 0.04) 0, transparent 6%),
+    radial-gradient(circle at 92% 58%, rgba(42, 35, 26, 0.035) 0, transparent 5%),
+    radial-gradient(circle at 6% 88%, rgba(42, 35, 26, 0.04) 0, transparent 6%),
+    radial-gradient(circle at 55% 30%, rgba(42, 35, 26, 0.03) 0, transparent 4%),
+    radial-gradient(circle at 25% 45%, rgba(42, 35, 26, 0.03) 0, transparent 4%);
+  background-size:
+    180px 180px,
+    220px 220px,
+    260px 260px,
+    200px 200px,
+    240px 240px,
+    190px 190px,
+    150px 150px,
+    170px 170px;
 }

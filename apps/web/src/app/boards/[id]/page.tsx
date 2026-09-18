@@ -27,7 +27,7 @@ function BoardDetailView({ boardId }: { boardId: string }) {
   const [draggingCardId, setDraggingCardId] = useState<string | null>(null);
 
   if (isLoading || !board || !session) {
-    return <p className="p-8 text-sm text-slate-400">Loading board...</p>;
+    return <p className="p-8 text-sm text-ink-soft">Loading board...</p>;
   }
 
   function handleDropAt(columnId: string, beforeCardId: string | null, afterCardId: string | null) {
@@ -41,8 +41,8 @@ function BoardDetailView({ boardId }: { boardId: string }) {
   return (
     <div className="flex h-[calc(100vh-65px)]">
       <div className="flex flex-1 flex-col overflow-hidden">
-        <div className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-3">
-          <h1 className="text-lg font-bold text-slate-900">{board.name}</h1>
+        <div className="flex items-center justify-between border-b border-ink/10 bg-paper px-6 py-3">
+          <h1 className="text-lg font-bold text-ink">{board.name}</h1>
           <div className="flex items-center gap-4">
             <PresenceBar viewers={viewers} />
             <Button variant="secondary" onClick={() => setIsAddingMember(true)}>
@@ -51,7 +51,7 @@ function BoardDetailView({ boardId }: { boardId: string }) {
           </div>
         </div>
 
-        <div className="flex flex-1 items-start gap-4 overflow-x-auto p-6">
+        <div className="cork-texture flex flex-1 items-start gap-4 overflow-x-auto p-6">
           {board.columns.map((column) => (
             <ColumnView
               key={column.id}

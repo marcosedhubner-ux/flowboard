@@ -6,7 +6,7 @@ export function PresenceBar({ viewers }: { viewers: PresenceViewer[] }) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs text-slate-400">Viewing now</span>
+      <span className="font-[family-name:var(--font-hand)] text-base text-ink-soft">Viewing now</span>
       <div className="flex -space-x-2">
         {viewers.map((viewer) => (
           <Avatar key={viewer.userId} fullName={viewer.fullName} />

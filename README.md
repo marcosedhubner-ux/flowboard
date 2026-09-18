@@ -1,4 +1,4 @@
-# FlowBoard
+# Corkboard
 
 A real-time collaborative Kanban board. Drag a card and everyone else looking at the board sees it move instantly, sees who else is currently viewing, and sees it land in an activity feed — without a full-board refresh and without ever renumbering every other card in the column.
 
@@ -6,7 +6,7 @@ A real-time collaborative Kanban board. Drag a card and everyone else looking at
 
 ## Why this exists
 
-The obvious way to store "card order" is an integer column and a re-index on every drag: card moves to position 3, so every card after it shifts by one, in a single request. That works until two people drag cards in the same column at the same time, or the column has a few hundred cards — now every move is an O(n) write and a race condition waiting to happen. FlowBoard uses fractional positioning instead: each card gets a floating-point position, and inserting between two cards is just the midpoint between their positions — an O(1) write that touches exactly one row.
+The obvious way to store "card order" is an integer column and a re-index on every drag: card moves to position 3, so every card after it shifts by one, in a single request. That works until two people drag cards in the same column at the same time, or the column has a few hundred cards — now every move is an O(n) write and a race condition waiting to happen. Corkboard uses fractional positioning instead: each card gets a floating-point position, and inserting between two cards is just the midpoint between their positions — an O(1) write that touches exactly one row.
 
 ## Architecture
 
@@ -35,7 +35,7 @@ Card moves are optimistic on the client (`useMoveCard` in `apps/web`): the UI re
 
 ## Real-time presence
 
-Beyond broadcasting data changes (the same `board:updated` pattern used across this portfolio), FlowBoard tracks who is *currently looking at* a board — state that deliberately never touches the database, because it's only true for as long as a socket stays connected. Each connection joins a `board:<id>` room and registers itself in an in-memory map; the current viewer list is rebroadcast to that room on every join and disconnect. Close the tab, and you disappear from everyone else's presence bar within one round trip — no stale "online" indicator waiting to expire.
+Beyond broadcasting data changes (the same `board:updated` pattern used across this portfolio), Corkboard tracks who is *currently looking at* a board — state that deliberately never touches the database, because it's only true for as long as a socket stays connected. Each connection joins a `board:<id>` room and registers itself in an in-memory map; the current viewer list is rebroadcast to that room on every join and disconnect. Close the tab, and you disappear from everyone else's presence bar within one round trip — no stale "online" indicator waiting to expire.
 
 ## Security
 

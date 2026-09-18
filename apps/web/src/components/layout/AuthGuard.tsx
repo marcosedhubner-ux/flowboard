@@ -18,14 +18,14 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
 
   if (isLoading || !data?.user) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-50 text-sm text-slate-500">
+      <div className="cork-texture flex min-h-screen items-center justify-center text-sm text-ink-soft">
         Loading...
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-screen flex-col bg-cork">
       <AppHeader />
       <main className="flex-1">{children}</main>
     </div>
