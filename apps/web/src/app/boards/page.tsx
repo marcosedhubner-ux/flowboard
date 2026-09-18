@@ -12,7 +12,7 @@ function BoardsView() {
   const [isCreating, setIsCreating] = useState(false);
 
   return (
-    <div className="cork-texture mx-auto min-h-[calc(100vh-65px)] max-w-4xl px-6 py-8">
+    <div className="mx-auto h-full max-w-4xl overflow-y-auto px-6 py-8">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-ink">Your boards</h1>
         <Button onClick={() => setIsCreating(true)}>New board</Button>

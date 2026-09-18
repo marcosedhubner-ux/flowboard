@@ -39,9 +39,9 @@ function BoardDetailView({ boardId }: { boardId: string }) {
   }
 
   return (
-    <div className="flex h-[calc(100vh-65px)]">
+    <div className="flex h-full flex-1 overflow-hidden">
       <div className="flex flex-1 flex-col overflow-hidden">
-        <div className="flex items-center justify-between border-b border-ink/10 bg-paper px-6 py-3">
+        <div className="flex items-center justify-between px-6 pb-3 pt-1">
           <h1 className="text-lg font-bold text-ink">{board.name}</h1>
           <div className="flex items-center gap-4">
             <PresenceBar viewers={viewers} />
@@ -51,7 +51,7 @@ function BoardDetailView({ boardId }: { boardId: string }) {
           </div>
         </div>
 
-        <div className="cork-texture flex flex-1 items-start gap-4 overflow-x-auto p-6">
+        <div className="flex flex-1 items-start gap-4 overflow-x-auto p-6">
           {board.columns.map((column) => (
             <ColumnView
               key={column.id}
