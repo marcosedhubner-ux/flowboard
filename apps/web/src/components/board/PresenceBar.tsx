@@ -9,7 +9,7 @@ export function PresenceBar({ viewers }: { viewers: PresenceViewer[] }) {
       <span className="font-[family-name:var(--font-hand)] text-base text-ink-soft">Viewing now</span>
       <div className="flex -space-x-2">
         {viewers.map((viewer) => (
-          <Avatar key={viewer.userId} fullName={viewer.fullName} />
+          <Avatar key={viewer.userId} fullName={viewer.fullName} className="animate-pin-pop" />
         ))}
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { AuthGuard } from "@/components/layout/AuthGuard";
 import { Button } from "@/components/ui/Button";
+import { EmptyPinIcon } from "@/components/ui/EmptyPinIcon";
 import { NewBoardForm } from "@/components/board/NewBoardForm";
 import { useBoards } from "@/hooks/useBoards";
 
@@ -21,14 +22,17 @@ function BoardsView() {
       {isLoading ? (
         <p className="text-sm text-ink-soft">Loading...</p>
       ) : boards?.length === 0 ? (
-        <p className="text-sm text-ink-soft">You are not part of any board yet.</p>
+        <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-ink/15 py-16 text-center">
+          <EmptyPinIcon className="h-10 w-10 text-pin/40" />
+          <p className="text-sm text-ink-soft">You are not part of any board yet.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {boards?.map((board, index) => (
             <Link
               key={board.id}
               href={`/boards/${board.id}`}
-              className={`rounded-xl bg-paper p-4 shadow-[0_3px_10px_rgba(42,35,26,0.12)] transition-transform duration-150 ease-out hover:rotate-0 hover:shadow-[0_5px_14px_rgba(42,35,26,0.16)] ${
+              className={`rounded-xl bg-paper p-4 shadow-[0_3px_10px_rgba(42,35,26,0.12)] transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-[3px] hover:rotate-0 hover:shadow-[0_12px_24px_rgba(42,35,26,0.22)] ${
                 index % 2 === 0 ? "rotate-[-0.6deg]" : "rotate-[0.6deg]"
               }`}
             >

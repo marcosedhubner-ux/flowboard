@@ -54,6 +54,41 @@ body {
  * tan, meant to suggest the mottled surface of real cork without ever
  * reading as a "pattern". Used behind the board canvas and the auth screens.
  */
+/*
+ * Presence avatars "pop" into place when they mount — used for newly
+ * joined viewers and freshly assigned cards. The small overshoot reads as
+ * a pin being pressed into the board rather than a UI element fading in.
+ */
+@keyframes pin-pop-in {
+  0% {
+    transform: scale(0.4) translateY(4px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12) translateY(-1px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-pin-pop {
+  animation: pin-pop-in 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .cork-texture {
   background-color: var(--color-cork);
   background-image:

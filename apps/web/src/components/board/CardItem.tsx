@@ -51,6 +51,14 @@ export function CardItem({
   const restingTilt = index % 2 === 0 ? "rotate-[-0.6deg]" : "rotate-[0.6deg]";
   const pinColor = PIN_COLORS[index % PIN_COLORS.length];
 
+  // While dragging, the browser's own drag image takes over, so the source
+  // element is pinned flat and dimmed rather than lifted — the lift/hover
+  // treatment below is deliberately withheld during drag so the two
+  // transforms never fight each other.
+  const restStateClasses = isDragging
+    ? "translate-y-0 rotate-0 opacity-70 shadow-[0_3px_10px_rgba(42,35,26,0.12)]"
+    : `${restingTilt} translate-y-0 shadow-[0_3px_10px_rgba(42,35,26,0.12)] hover:-translate-y-[3px] hover:rotate-0 hover:shadow-[0_12px_24px_rgba(42,35,26,0.22)]`;
+
   return (
     <div
       draggable
@@ -63,9 +71,7 @@ export function CardItem({
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       onClick={() => onOpen(card)}
-      className={`group relative cursor-grab space-y-2 rounded-xl bg-paper p-3 pt-4 shadow-[0_3px_10px_rgba(42,35,26,0.12)] transition-transform duration-150 ease-out hover:rotate-0 hover:shadow-[0_5px_14px_rgba(42,35,26,0.16)] active:cursor-grabbing ${
-        isDragging ? "rotate-0 opacity-70" : restingTilt
-      }`}
+      className={`group relative cursor-grab space-y-2 rounded-xl bg-paper p-3 pt-4 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] active:cursor-grabbing ${restStateClasses}`}
     >
       <span
         aria-hidden

@@ -2,6 +2,7 @@
 
 import { useState, type DragEvent } from "react";
 import { CardItem } from "./CardItem";
+import { EmptyPinIcon } from "@/components/ui/EmptyPinIcon";
 import type { CardInfo, ColumnInfo } from "@/lib/types";
 
 export function ColumnView({
@@ -46,8 +47,8 @@ export function ColumnView({
       onDragOver={handleDragOver}
       onDragLeave={() => setIsDragOver(false)}
       onDrop={handleDrop}
-      className={`flex w-72 flex-shrink-0 flex-col rounded-xl bg-ink/[0.04] p-3 ${
-        isDragOver ? "ring-2 ring-pin/50" : ""
+      className={`flex w-72 flex-shrink-0 flex-col rounded-xl p-3 transition-colors duration-200 ease-out ${
+        isDragOver ? "bg-pin/[0.07] ring-2 ring-pin/50" : "bg-ink/[0.04] ring-2 ring-transparent"
       }`}
     >
       <div className="mb-2 flex items-center justify-between px-1">
@@ -71,6 +72,13 @@ export function ColumnView({
             onOpen={onOpenCard}
           />
         ))}
+
+        {column.cards.length === 0 && (
+          <div className="flex flex-col items-center gap-2 rounded-lg py-6 text-center">
+            <EmptyPinIcon className="h-8 w-8 text-pin/30" />
+            <p className="text-xs text-ink-soft">No cards yet</p>
+          </div>
+        )}
       </div>
 
       {isAdding ? (
